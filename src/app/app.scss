@@ -1,0 +1,270 @@
+$weights: thin, ultralight, light, medium, semibold, bold, heavy, black;
+
+@each $weight in $weights {
+  @font-face {
+    font-family: "SF UI Display" + " " + $weight;
+    src: url("../../public/fonts/sf/sf-ui-display-" + $weight + ".woff") format("opentype");
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6C5DD3 !important;
+  border-radius: 16px !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+:root {
+  font-size: 16px !important;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.typography {
+  &-pc {
+    &-hero {
+      font-size: 6rem !important;
+      line-height: 6.5rem !important;
+      font-family: "SF UI Display black" !important;
+    }
+  
+    &-h1 {
+      font-size: 4.5rem !important;
+      line-height: 5.5rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-h2 {
+      font-size: 3.5rem !important;
+      line-height: 4rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-h3 {
+      font-size: 2.5rem !important;
+      line-height: 3.5rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-h4 {
+      font-size: 2.25rem !important;
+      line-height: 3rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-h5 {
+      font-size: 2rem !important;
+      line-height: 2.75rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-h6 {
+      font-size: 1.5rem !important;
+      // line-height: 2rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-h7 {
+      font-size: 1.25rem !important;
+      line-height: 1.75rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-s1 {
+      font-size: 1.25rem !important;
+      line-height: 2rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-s2 {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-s3 {
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-s4 {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-b1 {
+      font-size: 1.25rem !important;
+      line-height: 2rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+  
+    &-b2 {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+  
+    &-b3 {
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+  
+    &-desc-reg {
+      font-size: 0.875rem !important;
+      line-height: 1.375rem !important;
+      font-family: "SF UI Display light" !important;
+    }
+  
+    &-desc-semi {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  
+    &-help-reg {
+      font-size: 0.75rem !important;
+      line-height: 0.938rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+  
+    &-help-semi {
+      font-size: 0.75rem !important;
+      line-height: 0.938rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  }
+
+  &-mb {
+    &-h1 {
+      font-size: 2.5rem !important;
+      line-height: 3.5rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-h2 {
+      font-size: 2rem !important;
+      line-height: 2.625rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-h3 {
+      font-size: 1.5rem !important;
+      line-height: 2rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-h4 {
+      font-size: 1.25rem !important;
+      line-height: 1.75rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-h5 {
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-s1 {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-s2 {
+      font-size: 1rem !important;
+      line-height: 1.625rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-s3 {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+
+    &-b1 {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+
+    &-b2 {
+      font-size: 1rem !important;
+      line-height: 1.625rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+
+    &-b3 {
+      font-size: 0.875rem !important;
+      line-height: 1.5rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+
+    &-desc-reg {
+      font-size: 0.75rem !important;
+      line-height: 1.125rem !important;
+      font-family: "SF UI Display light" !important;
+    }
+
+    &-desc-semi {
+      font-size: 0.75rem !important;
+      line-height: 1.125rem !important;
+      font-family: "SF UI Display medium" !important;
+    }
+
+    &-help-reg {
+      font-size: 0.625rem !important;
+      line-height: 0.875rem !important;
+      font-family: "SF UI Display light" !important;
+    }
+
+    &-help-semi {
+      font-size: 0.625rem !important;
+      line-height: 0.875rem !important;
+      font-family: "SF UI Display semibold" !important;
+    }
+  }
+}
+
+.banner {
+  &.large-text {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+    font-family: "SF UI Display bold" !important;
+  }
+
+  &.medium-text {
+    font-size: 1rem !important;
+    font-family: "SF UI Display semibold" !important;
+  }
+
+  &.small-text {
+    font-size: 0.4rem !important;
+    font-family: "SF UI Display medium" !important;
+    margin: 2px 0;
+  }
+}
