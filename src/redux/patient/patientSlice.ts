@@ -24,13 +24,9 @@ export const patientSlice = createSlice({
     setPatientDetail: (state, action: PayloadAction<PatientData>) => {
       state.patientDetail = action.payload
     },
-<<<<<<< HEAD
-    // setPatient
-=======
     setPatientStats: (state, action: PayloadAction<PatientStats>) => {
       state.patientStats = action.payload
     },
->>>>>>> 920148187196ad6a3d72e0ef54c11eff4987f9ff
   },
 })
 
