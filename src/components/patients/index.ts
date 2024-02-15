@@ -1,5 +1,12 @@
-export * from './ExerciseCard';
-export * from './StyledStep';
-export * from './StyledTable';
-export * from './StyledPapperWithPadding';
-export * from './CommonReport';
+export * from './ExerciseCard'
+export * from './StyledStep'
+export * from './StyledTable'
+export * from './StyledPapperWithPadding'
+export * from './CommonReport'
+export { default as PatientsTable } from './PatientsTable'
+export { default as PatientStatBlock } from './PatientStatBlock'
+export { default as PatientStats } from './PatientStats'
+export { default as PatientInfo } from './PatientInfo'
+export { default as PatientStatsChart } from './PatientStatsChart'
+export { default as PatientAttributeBlock } from './PatientAttributeBlock'
+export { default as PatientAttributes } from './PatientAttributes'

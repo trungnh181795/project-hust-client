@@ -1,3 +1,5 @@
+'use-client'
+
 import React, { useState, useEffect, useRef } from 'react'
 import { Typography } from '@mui/material'
 import Video from 'twilio-video'

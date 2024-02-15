@@ -4,7 +4,8 @@ import { FC, ReactNode, useEffect } from 'react'
 import styled from 'styled-components'
 import { CircleLoading } from '../Loading'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useUser } from '@/hooks/redux'
+import { useUserDetail } from '@/hooks/redux'
+import { selectAuth, useAppSelector } from '@/redux'
 
 type AuthWrapperProps = {
   children: ReactNode
@@ -27,13 +28,14 @@ export const PrivatePageWrapper: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const router = useRouter()
-  const { user, isLoading, isValidating } = useUser()
+  const { curUserId: userId } = useAppSelector(selectAuth)
+  const { userDetail, isLoading, isValidating } = useUserDetail(userId)
 
   useEffect(() => {
-    if (!(isLoading || isValidating) && !user) {
+    if (!(isLoading || isValidating) && !userDetail) {
       router.push('/auth/login')
     }
-  }, [isLoading, user])
+  }, [isLoading, userDetail])
 
   return isLoading ? <CircleLoading /> : children
 }
@@ -41,16 +43,21 @@ export const PrivatePageWrapper: FC<{ children: ReactNode }> = ({
 export const AuthWrapper: FC<AuthWrapperProps> = ({ children }) => {
   const router = useRouter()
   const query = useSearchParams()
-  const { user, isLoading } = useUser()
+  const { curUserId: userId } = useAppSelector(selectAuth)
+  const { userDetail, isLoading } = useUserDetail(userId)
   const nextAction = query.get('nextAction')
 
   useEffect(() => {
-    if (!isLoading && user) {
+    if (!isLoading && userDetail) {
       router.push(
-        nextAction ? nextAction : user ? `/${user.role}/dashboard` : '/'
+        nextAction
+          ? nextAction
+          : userDetail
+            ? `/${userDetail.role}/dashboard`
+            : '/'
       )
     }
-  }, [user, isLoading, nextAction])
+  }, [userDetail, isLoading, nextAction])
 
   return isLoading ? <CircleLoading /> : children
 }

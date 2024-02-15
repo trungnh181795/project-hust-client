@@ -121,7 +121,7 @@ export const PageTitle: FC<PageContentTitleProps> = ({
     <Typography
       className={typography.pc[type === 'header' ? 'h6' : 's3']}
       color={colorPalette.dark}
-      component="div"
+      component={type === 'header' ? 'h1' : 'h2'}
       sx={{
         ...(type === 'content' && {
           paddingBottom: '16px',

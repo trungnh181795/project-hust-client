@@ -50,3 +50,8 @@ export type CreateUserResponse = Response & {
   role: Role
   password: string
 }
+
+export type UpdateUserParams = {
+  userId: string
+  payload: UserData
+}

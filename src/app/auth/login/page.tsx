@@ -67,7 +67,7 @@ export default function Login() {
           <Input
             label="Email"
             fullWidth
-            placeholder="Email của bạn"
+            placeholder="Email"
             type="text"
             {...field}
             error={!!errors?.email}
@@ -97,7 +97,7 @@ export default function Login() {
         rules={{ required: true }}
         control={control}
         render={({ field }) => (
-          <Checkbox control={<></>} {...field} label="Tôi là bác sĩ" />
+          <Checkbox control={<></>} {...field} label="I'm a doctor" />
         )}
       />
       <Button

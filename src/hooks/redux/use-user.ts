@@ -1,20 +1,28 @@
 'use client'
 
-import { MaybeNull, UserData } from '@/types'
+import { MaybeNull, UseSWRReturn, UserData } from '@/types'
 import { useQuery } from '@/hooks/use-query'
-import { selectAuth, setUser, useAppDispatch, useAppSelector } from '@/redux'
+import {
+  selectAuth,
+  setUser,
+  setUsers,
+  useAppDispatch,
+  useAppSelector,
+} from '@/redux'
 
-type UseUser = (initialData?: UserData) => {
-  user: MaybeNull<UserData>
-  isLoading: boolean
-  isValidating: boolean
-  error: any
-  mutate: (optimisticData?: UserData | undefined) => void
+type UseUserDetail = (
+  userId: MaybeNull<number>,
+  initialData?: UserData
+) => UseSWRReturn<UserData> & {
+  userDetail: MaybeNull<UserData>
 }
 
-export const useUser: UseUser = (initialData) => {
+type UseUsers = (initialData?: UserData[]) => UseSWRReturn<UserData[]> & {
+  users: MaybeNull<UserData[]>
+}
+
+export const useUserDetail: UseUserDetail = (userId, initialData) => {
   const dispatch = useAppDispatch()
-  const { curUserId: userId } = useAppSelector(selectAuth)
   const { data, isLoading, isValidating, error, mutate } = useQuery<UserData>(
     userId ? `user/${userId}` : null,
     {
@@ -34,7 +42,36 @@ export const useUser: UseUser = (initialData) => {
   console.log('data', { data, isLoading, error })
 
   return {
-    user: data,
+    userDetail: data,
+    isLoading,
+    isValidating,
+    error,
+    mutate,
+  }
+}
+
+export const useUsers: UseUsers = (initialData) => {
+  const dispatch = useAppDispatch()
+  const { data, isLoading, isValidating, error, mutate } = useQuery<UserData[]>(
+    'user',
+    {
+      revalidateIfStale: true,
+      revalidateOnMount: true,
+      revalidateOnFocus: true,
+      revalidateOnReconnect: true,
+      refreshInterval: 10000,
+      fallbackData: initialData,
+      onSuccess: (data) => {
+        dispatch(setUsers(data))
+      },
+    },
+    undefined,
+    { secured: true }
+  )
+  console.log('data', { data, isLoading, error })
+
+  return {
+    users: data,
     isLoading,
     isValidating,
     error,

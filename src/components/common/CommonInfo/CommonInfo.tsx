@@ -13,7 +13,8 @@ type ValueWithTag = {
 interface CommonInfoProps {
   icon?: React.FunctionComponent<any>
   label: string
-  value: string | number
+  value?: string | number
+  multiValues?: string[] | number[]
   hiddenValue?: boolean
   muiIcon?: React.ReactNode
   tagFilled?: boolean
@@ -24,6 +25,7 @@ const CommonInfo: FC<CommonInfoProps> = ({
   icon,
   label,
   value,
+  multiValues,
   hiddenValue,
   muiIcon,
   valuesWithTag,
@@ -41,6 +43,10 @@ const CommonInfo: FC<CommonInfoProps> = ({
   }
 
   const getColor = (value: string | number, valuesWithTag: ValueWithTag[]) => {
+    if (!valuesWithTag) {
+      return 'primary'
+    }
+
     const result = valuesWithTag.find((item) => item.value === value)
     if (result) {
       return result.color
@@ -51,7 +57,13 @@ const CommonInfo: FC<CommonInfoProps> = ({
 
   return (
     <Stack
-      sx={{ width: '100%', overflow: 'hidden' }}
+      sx={{
+        width: '100%',
+        overflow: 'hidden',
+        '&:not(:last-child)': {
+          marginBottom: '16px',
+        },
+      }}
       direction="row"
       alignItems="flex-start"
     >
@@ -79,12 +91,12 @@ const CommonInfo: FC<CommonInfoProps> = ({
           alignItems: 'flex-start',
           borderBottom: `1px solid ${colorPalette.line}`,
           marginLeft: '16px',
-          paddingBottom: '12px',
+          paddingBottom: '15px',
           overflow: 'hidden',
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={multiValues ? 12 : 4}>
             <Typography
               className={typography.mb.b2}
               color={colorPalette.dark}
@@ -96,32 +108,52 @@ const CommonInfo: FC<CommonInfoProps> = ({
           <Grid
             item
             xs={12}
-            md={8}
+            md={multiValues ? 12 : 8}
             display="flex"
             justifyContent="flex-end"
             sx={{ overflow: 'hidden' }}
           >
-            {!!valuesWithTag ? (
-              <Tag
-                variant={tagFilled ? 'filled' : 'outlined'}
-                label={value}
-                color={
-                  getColor(
-                    value,
-                    valuesWithTag as unknown as ValueWithTag[]
-                  ) as MuiColor
-                }
-              />
-            ) : (
-              <Typography
-                className={typography.mb.b2}
-                color={colorPalette.dark}
-                component="div"
-                sx={{ overflow: 'hidden' }}
-                textAlign="right"
-              >
-                {getValue(value)}
-              </Typography>
+            {value ? (
+              !!valuesWithTag ? (
+                <Tag
+                  variant={tagFilled ? 'filled' : 'outlined'}
+                  label={value}
+                  color={
+                    getColor(
+                      value,
+                      valuesWithTag as unknown as ValueWithTag[]
+                    ) as MuiColor
+                  }
+                />
+              ) : (
+                <Typography
+                  className={typography.mb.b2}
+                  color={colorPalette.dark}
+                  component="div"
+                  sx={{ overflow: 'hidden' }}
+                  textAlign="right"
+                >
+                  {getValue(value)}
+                </Typography>
+              )
+            ) : null}
+            {multiValues && (
+              <Stack direction="row" flexWrap="nowrap" sx={{ width: '100%' }}>
+                {multiValues.map((val, idx) => (
+                  <Tag
+                    key={idx}
+                    variant={tagFilled ? 'filled' : 'outlined'}
+                    sx={{ marginRight: '4px' }}
+                    label={val}
+                    color={
+                      getColor(
+                        val,
+                        valuesWithTag as unknown as ValueWithTag[]
+                      ) as MuiColor
+                    }
+                  />
+                ))}
+              </Stack>
             )}
           </Grid>
         </Grid>

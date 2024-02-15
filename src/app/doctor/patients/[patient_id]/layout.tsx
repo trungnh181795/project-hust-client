@@ -1,15 +1,49 @@
 'use client'
 /* Libs */
-import Link from 'next/link'
-import { ReactNode, useEffect, useState } from 'react'
-import { Grid } from '@mui/material'
-import PhoneIcon from '@mui/icons-material/Phone'
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace'
+import { ReactNode, useState } from 'react'
 import Room from '@/components/common/Room'
-import { FlexBox, StyledButton } from '@/components/elastic'
-import { StyledNavLink } from '@/components/base'
+import { PageHeader, PageTitle, PageWrapper } from '@/components/elastic'
+import { HeaderTab, NavIconButton, PrivatePageWrapper } from '@/components/common'
+import { CircularProgress, Stack, Box } from '@mui/material'
+import { useRouter } from 'next/navigation'
+import { usePatientDetail } from '@/hooks/redux'
 
-export default function PatientLayout({ children }: { children: ReactNode }) {
+type LinkType = {
+  label: string
+  href: string
+}
+
+type PatientLayoutProps = {
+  children: ReactNode
+  params: { patient_id: string }
+}
+
+const links: LinkType[] = [
+  {
+    label: 'Information',
+    href: 'information',
+  },
+  {
+    label: 'Stats',
+    href: 'stats',
+  },
+  {
+    label: 'Records',
+    href: 'record',
+  },
+  {
+    label: 'Presciption',
+    href: 'presciption',
+  },
+]
+
+export default function PatientLayout({
+  children,
+  params,
+}: PatientLayoutProps) {
+  const router = useRouter()
+  const { isLoading } = usePatientDetail(params?.patient_id)
+
   const [visisbleCallVideo, setVisisbleCallVideo] = useState<boolean>(false)
 
   const handleOpenCallVideo = () => {
@@ -20,87 +54,35 @@ export default function PatientLayout({ children }: { children: ReactNode }) {
     setVisisbleCallVideo(false)
   }
 
-  const userOptions = [
-    {
-      name: 'Information',
-      link: 'information',
-      //   icon: (isActive: boolean) => <InformationIcon isActive={isActive} />,
-    },
-    {
-      name: 'Stats',
-      link: 'stats',
-      //   icon: (isActive: boolean) => <StatsIcon isActive={isActive} />,
-    },
-    {
-      name: 'Appointments',
-      link: 'appointments',
-      //   icon: (isActive: boolean) => <AppointmentsIcon isActive={isActive} />,
-    },
-  ]
+  const handleOnBack = () => {
+    router.push('/doctor/patients')
+  }
 
-  // const styledButtonAttrs: ButtonProps & { component: React.ElementType } = {
-
-  // }
+  if (isLoading) {
+    return <CircularProgress />
+  }
 
   return (
-    <>
+    <PrivatePageWrapper>
       <Room open={visisbleCallVideo} handleClose={handleCloseCallVideo} />
-      <Grid container spacing={2}>
-        <Grid item xs={false} md={12}>
-          <StyledButton
-            borderRadius="8px"
-            width="auto"
-            height="30px"
-            startIcon={<KeyboardBackspaceIcon />}
-            variant="contained"
-            component={Link}
-            href={'/patients'}
-          >
-            Back to patients table
-          </StyledButton>
-        </Grid>
-        <Grid item xs={false} md={12}>
-          <FlexBox column={false} justify="space-between" align="center">
-            <FlexBox column={false} justify="flex-start" align="center">
-              {userOptions.map((option) => {
-                const isActive = location.pathname.includes(option.link)
-                  ? true
-                  : false
-                return (
-                  <StyledButton
-                    key={option.name}
-                    width="150px"
-                    height="46px"
-                    borderRadius="8px"
-                    component={StyledNavLink}
-                    variant="text"
-                    // startIcon={option.icon(isActive)}
-                    href={option.link}
-                    defaultActiveStyle={true}
-                  >
-                    {option.name}
-                  </StyledButton>
-                )
-              })}
-            </FlexBox>
-            <StyledButton
-              width="100px"
-              height="46px"
-              borderRadius="8px"
-              variant="contained"
-              startIcon={<PhoneIcon />}
-              onClick={() => handleOpenCallVideo()}
-            >
-              Call
-            </StyledButton>
-          </FlexBox>
-        </Grid>
-        <Grid item xs={false} md={12}>
-          <Grid container spacing={2}>
-            {children}
-          </Grid>
-        </Grid>
-      </Grid>
-    </>
+      <PageWrapper>
+        <PageHeader>
+          <Stack direction="row" alignItems="center">
+            <NavIconButton
+              dir="left"
+              variant="text"
+              size="sm"
+              onClick={handleOnBack}
+              style={{ marginRight: '16px' }}
+            />
+            <PageTitle type="header" title="Patient Detail" />
+          </Stack>
+        </PageHeader>
+        <HeaderTab linkPrefix="patients" links={links} />
+        <Box sx={{ marginTop: '16px' }}>
+          {children}
+        </Box>
+      </PageWrapper>
+    </PrivatePageWrapper>
   )
 }

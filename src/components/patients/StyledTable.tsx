@@ -4,10 +4,10 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import Typography from '@mui/material/Typography';
 /* Styles */
-import { StyledTableCell, StyledTableRow, StepIcon } from '../styles';
-import { FlexBox } from '../../../styles';
+import { FlexBox } from '@/components/elastic';
 /* Types */
-import { statsLevel } from '../../../types/levels';
+import { StepIcon, StyledTableCell, StyledTableRow } from './styles';
+import { statsLevel } from '@/types';
 
 export const StyledTable: React.FC = () => {
   const [rows] = React.useState(statsLevel);

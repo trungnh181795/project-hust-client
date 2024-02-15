@@ -89,7 +89,17 @@ const EnhancedTableHead: FC<EnhancedTableHeadProps> = ({
             </TableCell>
           )
         )}
-        {withAction && <TableCell align="left">{'Actions'}</TableCell>}
+        {withAction && (
+          <TableCell align="left">
+            <Typography
+              className={typography.pc.s4}
+              component="div"
+              color={colorPalette.dark}
+            >
+              Action
+            </Typography>
+          </TableCell>
+        )}
       </TableRow>
     </TableHead>
   )

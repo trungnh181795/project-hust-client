@@ -17,12 +17,15 @@ const styledTag = (Component: typeof Chip) => {
     const sizeStyle = {
       xs: {
         padding: '2px 4px',
+        typography: typography.pc.helpReg,
       },
       sm: {
         padding: '2px 4px',
+        typography: typography.pc.helpReg,
       },
       lg: {
         padding: '2px 4px',
+        typography: typography.mb.b3,
       },
     }
 
@@ -30,7 +33,7 @@ const styledTag = (Component: typeof Chip) => {
       <Component
         label={
           <Typography
-            className={typography.mb.b3}
+            className={sizeStyle[customSize].typography}
             color={variant === 'filled' ? colorPalette.white : color}
           >
             {label}

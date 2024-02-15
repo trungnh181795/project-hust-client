@@ -82,7 +82,7 @@ const Table: FC<TableProps> = ({
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [rowsToShow, setRowsToShow] = useState(rows)
-  const [searchTermType, setSearchTermType] = useState<string>('_id')
+  const [searchTermType, setSearchTermType] = useState<string>('id')
 
   const searchTermTypes = useMemo(
     () =>

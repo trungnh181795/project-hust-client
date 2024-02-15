@@ -1,11 +1,23 @@
 'use client'
 
-import { fetcher } from '@/utils/fetcher'
+import {
+  PageContent,
+  PageHeader,
+  PageTitle,
+  PageWrapper,
+} from '@/components/elastic'
+import { PatientsTable } from '@/components/patients'
+import { usePatients } from '@/hooks/redux'
+import { CircularProgress } from '@mui/material'
 
 export default function PatientsPage() {
-  const { data}
+  const { patients, isLoading } = usePatients()
 
-  console.log('data', data)
+  console.log('data', patients)
+
+  if (isLoading) {
+    return <CircularProgress />
+  }
 
   return (
     <PageWrapper>
@@ -13,9 +25,8 @@ export default function PatientsPage() {
         <PageTitle type="header" title={'Patients'} />
       </PageHeader>
       <PageContent>
-
+        {patients ? <PatientsTable patients={patients} /> : null}
       </PageContent>
     </PageWrapper>
   )
 }
- 

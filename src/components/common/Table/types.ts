@@ -1,4 +1,4 @@
-import { MuiColor } from "@/types"
+import { MaybeNull, MuiColor } from "@/types"
 export type Order = 'asc' | 'desc'
 
 export enum FilterType {
@@ -45,7 +45,7 @@ export type TagColorMap = {
 export interface TableCellType {
    identifier: string
    type: TableCellDataType
-   data: string | number | Date | ActionData[]
+   data: MaybeNull<string | number | Date | ActionData[]>
    tagColorMap?: TagColorMap[]
    unit?: string
 }

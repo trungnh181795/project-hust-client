@@ -1,3 +1,4 @@
+'use-client'
 /* Libs */
 import React, { useEffect, useState, useCallback } from 'react'
 import { Typography } from '@mui/material'
@@ -37,7 +38,7 @@ const VideoCall: React.FC<Props> = ({ roomName, username, onClose }) => {
   const connectToVideoServer = async () => {
     setVideoConnecting(true)
     const data = await fetch(
-      'https://test-test123xxx.herokuapp.com/api/video/token',
+      `${process.env.NEXT_PUBLIC_VIDEO_SDK_URL}/api/video/token`,
       {
         method: 'POST',
         body: JSON.stringify({
