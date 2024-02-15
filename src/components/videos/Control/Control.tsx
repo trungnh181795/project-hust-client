@@ -1,3 +1,4 @@
+'use-client'
 /* Libs */
 import React from 'react'
 import { IconButton } from '@mui/material'

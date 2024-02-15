@@ -7,6 +7,7 @@ import {
   CalendarIcon,
   DashboardIcon,
   PillIcon,
+  UserGroupIcon,
   UserIcon,
 } from '@/components/icons'
 
@@ -26,28 +27,35 @@ export const doctorRoutes: RouteType[] = [
   {
     name: 'Dashboard',
     title: 'Dashboard',
-    path: '/dashboard',
+    path: '/doctor/dashboard',
     icon: DashboardIcon,
     hideInMenu: false,
   },
   {
     name: 'Patients',
     title: 'Patients',
-    path: '/patients',
+    path: '/doctor/patients',
     icon: UserIcon,
+    hideInMenu: false,
+  },
+  {
+    name: 'Human Resources',
+    title: 'Human Resources',
+    path: '/doctor/human-resources',
+    icon: UserGroupIcon,
     hideInMenu: false,
   },
   {
     name: 'Calendar',
     title: 'Calendar',
-    path: '/calendar',
+    path: '/doctor/calendar',
     icon: CalendarIcon,
     hideInMenu: false,
   },
   {
     name: 'Pharmacy',
     title: 'Pharmacy',
-    path: '/pharmacy',
+    path: '/doctor/pharmacy',
     icon: PillIcon,
     hideInMenu: false,
   },

@@ -1,11 +1,31 @@
-import { BaseData, MaybeNull, UserAddress } from "@/types"
+import {
+  BaseData,
+  DeviceRecordData,
+  DoctorData,
+  MaybeNull,
+  UserAddress,
+  UserData,
+} from '@/types'
 
 export type PatientData = BaseData & {
   code: string
-  account: number
-  doctor: null
+  account: UserData
+  doctor: DoctorData
   device: null
   medicalThreshold: number
+  deviceRecords: DeviceRecordData[]
+}
+
+export type PatientStats = {
+  [PatientStatEnum.HEART_BPM]: number
+  [PatientStatEnum.OXYGEN_PERCENT]: number
+  [PatientStatEnum.TEMPERATURE]: number
+}
+
+export enum PatientStatEnum {
+  HEART_BPM = 'heart_beat_bpm',
+  OXYGEN_PERCENT = 'oxygen_percent',
+  TEMPERATURE = 'temperature',
 }
 
 export type CreatePatientPayload = {

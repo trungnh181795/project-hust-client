@@ -17,7 +17,7 @@ import { doctorRoutes, typography, colorPalette } from '@/config'
 import { DrawerHeader } from '@/components/elastic'
 import Link from 'next/link'
 import {
-   Drawer,
+  Drawer,
   LogoTitle,
   MenuListItem,
   MenuListItemIcon,
@@ -27,23 +27,27 @@ import {
   UserOuterBox,
 } from './styles'
 import { Icon, StyledNavLink } from '@/components/base'
-// import logo from '@/../public/logo.png'
+import logo from '@/../public/next.svg'
+import { logout, useAppDispatch } from '@/redux'
+import { useRouter } from 'next/navigation'
 // import { ReactComponent as NavDownIcon } from '@/../public/icons/nav-down.svg'
 interface SidebarProps {
   open: boolean
 }
 
 const Sidebar: FC<SidebarProps> = ({ open }) => {
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   const [currHoveredItem, setCurrHoveredItem] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+
+  const router = useRouter()
 
   const anchorRef = useRef<HTMLButtonElement>(null)
   const prevOpen = useRef(open)
 
-  // const handleLogout = () => {
-  //    dispatch(logout())
-  // }
+  const handleLogout = () => {
+    dispatch(logout())
+  }
 
   const handleToggle = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen)
@@ -99,11 +103,9 @@ const Sidebar: FC<SidebarProps> = ({ open }) => {
                 aria-labelledby="composition-button"
                 onKeyDown={handleListKeyDown}
               >
-                <MenuItem>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My Account</MenuItem>
-                {/* <MenuItem onClick={handleLogout}>
-                           {t('sidebarPopper.logout')}
-                        </MenuItem> */}
+                <MenuItem onClick={() => router.push('/doctor/profile')}>Profile</MenuItem>
+                {/* <MenuItem onClick={handleClose}>My Account</MenuItem> */}
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </MenuList>
             </ClickAwayListener>
           </Paper>
@@ -207,11 +209,11 @@ const Sidebar: FC<SidebarProps> = ({ open }) => {
               onClick={handleToggle}
               sx={{ width: '42px', height: '42px', padding: 0 }}
             >
-              {/* <Avatar
+              <Avatar
                 src={logo}
                 alt="ava"
                 sx={{ width: '100%', height: '100%' }}
-              /> */}
+              />
             </IconButton>
             <UserInnerBox open={open}>
               <Typography className={typography.pc.s4} component="div">

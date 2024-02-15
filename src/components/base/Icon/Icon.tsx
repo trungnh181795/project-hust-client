@@ -4,6 +4,7 @@ import { Box, BoxProps } from '@mui/material'
 import { FC, FunctionComponent, useEffect, useRef, useState } from 'react'
 
 type IconProps = {
+  colorDisabled?: boolean
   type: 'fill' | 'stroke'
   color: string
   src: FunctionComponent<any>
@@ -25,6 +26,7 @@ const Icon: FC<ExtraIconProps> = (props) => {
     type,
     src,
     color,
+    colorDisabled = false,
     width,
     height,
     active,
@@ -44,18 +46,20 @@ const Icon: FC<ExtraIconProps> = (props) => {
   }
 
   useEffect(() => {
-    iconShapes.forEach((shape) => {
-      const elements = iconRef.current?.querySelectorAll(shape)
-      elements?.forEach((element) => {
-        element?.setAttribute(type, color)
-      })
-      if ((active || isHovered) && activeColor) {
+    if (!colorDisabled) {
+      iconShapes.forEach((shape) => {
+        const elements = iconRef.current?.querySelectorAll(shape)
         elements?.forEach((element) => {
-          element?.setAttribute(type, activeColor)
+          element?.setAttribute(type, color)
         })
-      }
-    })
-  }, [type, color, src, active, activeColor, isHovered])
+        if ((active || isHovered) && activeColor) {
+          elements?.forEach((element) => {
+            element?.setAttribute(type, activeColor)
+          })
+        }
+      })
+    }
+  }, [type, color, src, active, activeColor, isHovered, colorDisabled])
 
   useEffect(() => {
     const element = iconRef.current?.querySelector('svg')

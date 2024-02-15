@@ -30,7 +30,7 @@ export default function AuthLayout({
   const { title, image } = authFormMap[authForm]
 
   return (
-    <AuthWrapper>
+    // <AuthWrapper>
       <Wrapper>
         <Stack
           sx={{
@@ -69,6 +69,6 @@ export default function AuthLayout({
           <FormContainer>{children}</FormContainer>
         </AuthContainer>
       </Wrapper>
-    </AuthWrapper>
+    // </AuthWrapper>
   )
 }

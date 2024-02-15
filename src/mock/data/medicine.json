@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Amoxicillin",
+        "expireAt": "2024-08-01",
+        "price": 10.99,
+        "category": "capsule"
+    },
+    {
+        "id": 2,
+        "name": "Ibuprofen",
+        "expireAt": "2024-06-15",
+        "price": 5.49,
+        "category": "pill"
+    },
+    {
+        "id": 3,
+        "name": "Cephalexin",
+        "expireAt": "2024-09-20",
+        "price": 15.79,
+        "category": "capsule"
+    },
+    {
+        "id": 4,
+        "name": "Dexamethasone",
+        "expireAt": "2024-07-10",
+        "price": 8.25,
+        "category": "injection"
+    },
+    {
+        "id": 5,
+        "name": "Paracetamol",
+        "expireAt": "2024-05-30",
+        "price": 3.99,
+        "category": "pill"
+    },
+    {
+        "id": 6,
+        "name": "Levofloxacin",
+        "expireAt": "2024-10-25",
+        "price": 12.45,
+        "category": "capsule"
+    },
+    {
+        "id": 7,
+        "name": "Insulin",
+        "expireAt": "2024-08-15",
+        "price": 50.00,
+        "category": "injection"
+    },
+    {
+        "id": 8,
+        "name": "Loratadine",
+        "expireAt": "2024-07-05",
+        "price": 6.75,
+        "category": "pill"
+    },
+    {
+        "id": 9,
+        "name": "Ciprofloxacin",
+        "expireAt": "2024-09-18",
+        "price": 11.99,
+        "category": "capsule"
+    },
+    {
+        "id": 10,
+        "name": "Epinephrine",
+        "expireAt": "2024-06-20",
+        "price": 30.25,
+        "category": "injection"
+    }
+]

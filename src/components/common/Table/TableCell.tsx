@@ -12,7 +12,7 @@ import { TableImage } from './common'
 import { ReactNode } from 'react'
 import { GetDateReturn, getDate } from '@/helpers/date-helper'
 import Link from 'next/link'
-import { Tag } from '@/components/base'
+import { Icon, Tag } from '@/components/base'
 
 interface TableCellProps extends MuiTableCellProps {
   type?: TableCellDataType
@@ -69,11 +69,11 @@ const styledTableCell = (Component: typeof MuiTableCell) => {
                   {...btnProps}
                   disabled={disabled}
                 >
-                  {/* <Icon
-                                 type='fill'
-                                 src={icon.src}
-                                 color={icon.color || colorPalette.grey}
-                              /> */}
+                  <Icon
+                    type="fill"
+                    src={icon.src}
+                    color={icon.color || colorPalette.grey}
+                  />
                 </IconButton>
               </Tooltip>
             )

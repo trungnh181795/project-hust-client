@@ -120,3 +120,10 @@ export enum Gender {
 export type Response = {
   message?: string
 }
+
+export type UseSWRReturn<T> = {
+  isLoading: boolean
+  isValidating: boolean
+  error: any
+  mutate: (optimisticData?: T | undefined) => void
+}

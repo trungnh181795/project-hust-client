@@ -3,9 +3,8 @@ import { FC, ReactNode} from 'react'
 import Icon from '@/components/base/Icon'
 import { DrawerHeader } from '@/components/elastic'
 import { colorPalette } from '@/config'
-// import { ReactComponent as NavLeftIcon } from '@/../public/icons/nav-left.svg'
-// import { ReactComponent as NavRightIcon } from '@/../public/icons/nav-right.svg'
 import { MainBox, ContentContainer, ToggleMenuButton } from './styles'
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/icons'
 
 interface ContentProps {
   open: boolean
@@ -27,11 +26,11 @@ const Content: FC<ContentProps> = ({ open, onOpen, onClose, children }) => {
           onClick={open ? onClose : onOpen}
           edge="start"
         >
-          {/* <Icon
+          <Icon
             type="fill"
-            src={open ? NavLeftIcon : NavRightIcon}
+            src={open ? ArrowLeftIcon : ArrowRightIcon}
             color={colorPalette.white}
-          /> */}
+          />
         </ToggleMenuButton>
       </ContentContainer>
     </MainBox>

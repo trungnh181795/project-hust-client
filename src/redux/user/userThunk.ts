@@ -1,4 +1,10 @@
-import { CreateUserParams, CreateUserResponse, Status } from '@/types'
+import {
+  CreateUserParams,
+  CreateUserResponse,
+  Status,
+  UpdateUserParams,
+  UserData,
+} from '@/types'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { setResponse, setUploading } from '@/redux'
 import { fetcher } from '@/utils/fetcher'
@@ -30,6 +36,37 @@ export const createUser = createAsyncThunk(
       if (data && statusCode === 201) {
         onSignUpSuccess(data?.email)
       }
+
+      dispatch(setUploading(false))
+      dispatch(
+        setResponse({
+          status: Status[statusCode === 201 ? 'SUCCESS' : 'ERROR'],
+          message: data?.message,
+        })
+      )
+    } catch (err: any) {
+      dispatch(setUploading(false))
+      dispatch(
+        setResponse({ status: Status.PENDING, message: err?.response?.message })
+      )
+    }
+  }
+)
+
+export const updateUser = createAsyncThunk(
+  'userState/updateUser',
+  async ({ userId, payload }: UpdateUserParams, { dispatch }) => {
+    try {
+      dispatch(setUploading(true))
+      dispatch(
+        setResponse({ status: Status.PENDING, message: 'Processing...' })
+      )
+
+      const { data, statusCode } = await fetcher<any, UserData>({
+        url: `user/${userId}`,
+        method: 'POST',
+        body: payload,
+      })
 
       dispatch(setUploading(false))
       dispatch(

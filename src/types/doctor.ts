@@ -1,8 +1,8 @@
-import { BaseData, MaybeNull, UserAddress } from '@/types'
+import { BaseData, MaybeNull, UserAddress, UserData } from '@/types'
 import { NotificationData } from './notification'
 
 export type DoctorData = BaseData & {
-  account: string
+  account: UserData
   department: string
   degree: string
 }

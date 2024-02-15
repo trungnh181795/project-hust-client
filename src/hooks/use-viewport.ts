@@ -1,3 +1,5 @@
+'use-client'
+
 import { MaybeUndef } from '@/types/common'
 import { useState, useEffect } from 'react'
 

@@ -1,8 +1,8 @@
 /* Libs */
 import React from 'react';
 import { Divider } from '@mui/material';
+import { StyledPaper } from '@/components/elastic';
 /* Styles */
-import { StyledPaper } from '../../../styles';
 
 interface Props {
   borderRadius: string;

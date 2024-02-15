@@ -6,7 +6,8 @@ import {
   fetchReducer,
   medicineReducer,
   userReducer,
-  patientReducer
+  patientReducer,
+  doctorReducer
 } from '@/redux'
 /* Reducers */
 export interface Action<T = any> {
@@ -27,6 +28,7 @@ export const makeStore = () =>
       medicineState: medicineReducer,
       patientState: patientReducer,
       userState: userReducer,
+      doctorState: doctorReducer
     },
     devTools: process.env.NODE_ENV !== 'production',
   })

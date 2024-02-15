@@ -1,43 +1,79 @@
 'use client'
 
-import { MaybeNull, UserData } from '@/types'
+import {
+  MaybeNull,
+  PatientData,
+  PatientStats,
+  Role,
+  UseSWRReturn,
+  UserData,
+} from '@/types'
 import { useQuery } from '@/hooks/use-query'
-import { selectAuth, setUser, useAppDispatch, useAppSelector } from '@/redux'
+import { setPatientDetail, setPatients, useAppDispatch } from '@/redux'
+import { useUsers } from '@/hooks/redux'
+import { useEffect } from 'react'
 
-type UseUser = (initialData?: UserData) => {
-  user: MaybeNull<UserData>
-  isLoading: boolean
-  isValidating: boolean
-  error: any
-  mutate: (optimisticData?: UserData | undefined) => void
+type UsePatients = (initialData?: UserData[]) => UseSWRReturn<UserData[]> & {
+  patients: MaybeNull<UserData[]>
 }
 
-export const usePatients: UseUser = (initialData) => {
+type UsePatientDetail = (
+  patientId: string,
+  initialData?: PatientData
+) => UseSWRReturn<PatientData> & {
+  patientDetail: MaybeNull<PatientData>
+}
+
+export const usePatients: UsePatients = (initialData) => {
   const dispatch = useAppDispatch()
-  const { curUserId: userId } = useAppSelector(selectPatient)
-  const { data, isLoading, isValidating, error, mutate } = useQuery<UserData>(
-    userId ? `user/${userId}` : null,
-    {
-      revalidateIfStale: true,
-      revalidateOnMount: true,
-      revalidateOnFocus: true,
-      revalidateOnReconnect: true,
-      refreshInterval: 10000,
-      fallbackData: initialData,
-      onSuccess: (data) => {
-        dispatch(setUser(data))
-      },
-    },
-    undefined,
-    { secured: true }
-  )
-  console.log('data', { data, isLoading, error })
+  const { users, isLoading, isValidating, mutate, error } =
+    useUsers(initialData)
+
+  const patients = users
+    ? users.filter((user) => user.role === Role.PATIENT)
+    : null
+
+  useEffect(() => {
+    if (patients) {
+      dispatch(setPatients(patients))
+    }
+  }, [patients])
 
   return {
-    user: data,
+    patients,
     isLoading,
     isValidating,
     error,
+    mutate,
+  }
+}
+
+export const usePatientDetail: UsePatientDetail = (patientId, initialData) => {
+  const dispatch = useAppDispatch()
+  const { data, error, isLoading, isValidating, mutate } =
+    useQuery<PatientData>(
+      patientId ? `patient/${patientId}` : null,
+      {
+        revalidateIfStale: true,
+        revalidateOnMount: true,
+        revalidateOnFocus: true,
+        revalidateOnReconnect: true,
+        refreshInterval: 10000,
+        fallbackData: initialData,
+        onSuccess: (data) => {
+          dispatch(setPatientDetail(data?.data))
+        },
+      },
+      undefined,
+      { secured: true }
+    )
+
+  console.log('data2', data)
+  return {
+    patientDetail: data,
+    isLoading,
+    error,
+    isValidating,
     mutate,
   }
 }
