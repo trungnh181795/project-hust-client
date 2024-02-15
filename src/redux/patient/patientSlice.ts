@@ -22,7 +22,7 @@ export const patientSlice = createSlice({
     setPatientDetail: (state, action: PayloadAction<PatientData>) => {
       state.patientDetail = action.payload
     },
-    setPatient
+    // setPatient
   },
   extraReducers: (builder) => {},
 })
