@@ -3,6 +3,8 @@ import { InputBaseProps } from '@mui/material'
 import { Search, SearchIconWrapper, StyledInputBase } from './styles'
 import { colorPalette, typography } from '@/config'
 import { FC, forwardRef } from 'react'
+import { Icon } from '@/components/base'
+import { SearchIcon } from '@/components/icons'
 
 interface SearchBoxProps extends InputBaseProps {
   width: number
@@ -13,11 +15,7 @@ const SearchBox: FC<SearchBoxProps> = forwardRef(
     return (
       <Search width={width}>
         <SearchIconWrapper>
-          {/* <Icon
-               type='fill'
-               src={SearchIcon}
-               color={colorPalette.lightGrey}
-            /> */}
+          <Icon type="fill" src={SearchIcon} color={colorPalette.lightGrey} />
         </SearchIconWrapper>
         <StyledInputBase
           ref={ref}

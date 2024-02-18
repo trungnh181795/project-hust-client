@@ -31,44 +31,41 @@ export default function AuthLayout({
 
   return (
     // <AuthWrapper>
-      <Wrapper>
-        <Stack
-          sx={{
-            height: '250px',
-            width: '100%',
-            bgcolor: colorPalette.primary,
-          }}
-        >
-          <Container
-            maxWidth="md"
-            sx={{ position: 'relative', height: '100%' }}
+    <Wrapper>
+      <Stack
+        sx={{
+          height: '250px',
+          width: '100%',
+          bgcolor: colorPalette.primary,
+        }}
+      >
+        <Container maxWidth="md" sx={{ position: 'relative', height: '100%' }}>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '40px',
+            }}
           >
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '40px',
-              }}
-            >
-              <Logo variant="secondary" size={1.2}></Logo>
-            </Box>
-            <Typography
-              sx={{ position: 'absolute', bottom: '47px' }}
-              className={typography.pc.h5}
-              color={colorPalette.white}
-              component="div"
-              textAlign="right"
-            >
-              {title}
-            </Typography>
-            <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
-              <Image src={image} alt={title} height={250} quality={100} />
-            </Box>
-          </Container>
-        </Stack>
-        <AuthContainer>
-          <FormContainer>{children}</FormContainer>
-        </AuthContainer>
-      </Wrapper>
+            <Logo variant="secondary" size={1.2}></Logo>
+          </Box>
+          <Typography
+            sx={{ position: 'absolute', bottom: '47px' }}
+            className={typography.pc.h5}
+            color={colorPalette.black}
+            component="div"
+            textAlign="right"
+          >
+            {title}
+          </Typography>
+          <Box sx={{ position: 'absolute', top: 0, right: 0 }}>
+            <Image src={image} alt={title} height={250} quality={100} />
+          </Box>
+        </Container>
+      </Stack>
+      <AuthContainer>
+        <FormContainer>{children}</FormContainer>
+      </AuthContainer>
+    </Wrapper>
     // </AuthWrapper>
   )
 }

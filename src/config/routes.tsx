@@ -6,6 +6,7 @@ import React from 'react'
 import {
   CalendarIcon,
   DashboardIcon,
+  MessengerIcon,
   PillIcon,
   UserGroupIcon,
   UserIcon,
@@ -57,6 +58,13 @@ export const doctorRoutes: RouteType[] = [
     title: 'Pharmacy',
     path: '/doctor/pharmacy',
     icon: PillIcon,
+    hideInMenu: false,
+  },
+  {
+    name: 'Support Center',
+    title: 'Support Center',
+    path: '/doctor/support-center',
+    icon: MessengerIcon,
     hideInMenu: false,
   },
 ]

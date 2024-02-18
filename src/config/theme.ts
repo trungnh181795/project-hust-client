@@ -197,7 +197,7 @@ export const typography = {
       b1: 'typography-mb-b1',
       b2: 'typography-mb-b2',
       b3: 'typography-mb-b3',
-      escReg: 'typography-mb-desc-reg',
+      descReg: 'typography-mb-desc-reg',
       descSemi: 'typography-mb-desc-semi',
       helpReg: 'typography-mb-help-reg',
       helpSemi: 'typography-mb-help-semi',

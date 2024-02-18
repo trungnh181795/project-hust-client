@@ -2,17 +2,19 @@
 
 import { styled } from '@mui/system'
 import { TextField, Typography } from '@mui/material'
-import { colorPalette } from '@/config'
+import { colorPalette, typography } from '@/config'
 
 export const StyledTextField = styled(TextField)(
    () => `
     color: ${colorPalette.dark};
     .MuiInputBase-input {
         color: ${colorPalette.dark};
+        
     }
     .MuiOutlinedInput-notchedOutline {
         border-radius: 12px;
         border-color: ${colorPalette.stroke};
+        
     }
 `
 )
