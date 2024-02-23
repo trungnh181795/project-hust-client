@@ -32,8 +32,8 @@ export const useUserDetail: UseUserDetail = (userId, initialData) => {
       revalidateOnReconnect: true,
       refreshInterval: 10000,
       fallbackData: initialData,
-      onSuccess: (data) => {
-        dispatch(setUser(data))
+      onSuccess: (data: any) => {
+        dispatch(setUser(data?.data))
       },
     },
     undefined,
@@ -61,8 +61,8 @@ export const useUsers: UseUsers = (initialData) => {
       revalidateOnReconnect: true,
       refreshInterval: 10000,
       fallbackData: initialData,
-      onSuccess: (data) => {
-        dispatch(setUsers(data))
+      onSuccess: (data: any) => {
+        dispatch(setUsers(data?.data))
       },
     },
     undefined,

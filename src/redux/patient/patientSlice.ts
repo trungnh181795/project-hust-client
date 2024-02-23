@@ -6,12 +6,14 @@ export type PatientState = {
   patients: MaybeNull<UserData[]>
   patientDetail: MaybeNull<PatientData>
   patientStats: MaybeNull<PatientStats>
+  patientStatsRecords: MaybeNull<PatientStats[]>
 }
 
 const initialState: PatientState = {
   patientDetail: null,
   patients: null,
   patientStats: null,
+  patientStatsRecords: null,
 }
 
 export const patientSlice = createSlice({
@@ -27,10 +29,17 @@ export const patientSlice = createSlice({
     setPatientStats: (state, action: PayloadAction<PatientStats>) => {
       state.patientStats = action.payload
     },
+    setPatientStatsRecord: (state, action: PayloadAction<PatientStats[]>) => {
+      state.patientStatsRecords = action.payload
+    },
   },
 })
 
-export const { setPatientDetail, setPatientStats, setPatients } =
-  patientSlice.actions
+export const {
+  setPatientDetail,
+  setPatientStats,
+  setPatients,
+  setPatientStatsRecord,
+} = patientSlice.actions
 
 export default patientSlice.reducer

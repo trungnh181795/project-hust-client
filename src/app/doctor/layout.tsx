@@ -22,7 +22,7 @@ export default function DoctorLayout({
   }
 
   return (
-    // <PrivatePageWrapper>
+    <PrivatePageWrapper>
       <Box sx={{ display: 'flex' }}>
         {/* {!isAuthenticated && <Navigate to="/login" replace={true} />} */}
         <Header open={isOpen} />
@@ -37,6 +37,6 @@ export default function DoctorLayout({
           <Message />
         </Content>
       </Box>
-    // </PrivatePageWrapper>
+    </PrivatePageWrapper>
   )
 }

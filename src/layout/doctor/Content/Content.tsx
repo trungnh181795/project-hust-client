@@ -1,10 +1,10 @@
 /* Libs */
-import { FC, ReactNode} from 'react'
+import { FC, ReactNode } from 'react'
 import Icon from '@/components/base/Icon'
 import { DrawerHeader } from '@/components/elastic'
 import { colorPalette } from '@/config'
 import { MainBox, ContentContainer, ToggleMenuButton } from './styles'
-import { ArrowLeftIcon, ArrowRightIcon } from '@/components/icons'
+import { NavArrowLeftIcon, NavArrowRightIcon } from '@/components/icons'
 
 interface ContentProps {
   open: boolean
@@ -28,7 +28,7 @@ const Content: FC<ContentProps> = ({ open, onOpen, onClose, children }) => {
         >
           <Icon
             type="fill"
-            src={open ? ArrowLeftIcon : ArrowRightIcon}
+            src={open ? NavArrowLeftIcon : NavArrowRightIcon}
             color={colorPalette.white}
           />
         </ToggleMenuButton>

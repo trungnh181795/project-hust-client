@@ -1,6 +1,5 @@
 import appointments from '@/mock/data/appointments.json'
 import doctors from '@/mock/data/doctors.json'
-import users from '@/mock/data/users.json'
 
 const appointmentsData = appointments.map((appointment) => ({
   patientId: appointment.id.toString(),
@@ -14,7 +13,6 @@ const appointmentsData = appointments.map((appointment) => ({
 const data = {
     appointments: appointmentsData,
     doctors,
-    patients
 }
 
 export const getMockData = (name: string) => {

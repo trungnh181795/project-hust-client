@@ -16,6 +16,7 @@ import { colorPalette, typography } from '@/config'
 import { styled as muiStyled } from '@mui/material'
 import { InputBase } from '@mui/material'
 import { ButtonProps } from '@mui/material'
+import { Role } from '@/types'
 
 interface FlexBoxProps {
   column?: boolean
@@ -54,6 +55,7 @@ interface PageContentTitleProps {
   type: 'header' | 'content'
   otherContent?: React.ReactNode
   withIcons?: boolean
+  role?: Role
 }
 
 export const DrawerHeader = styled('div')(() => {
@@ -116,16 +118,23 @@ export const PageTitle: FC<PageContentTitleProps> = ({
   type,
   otherContent,
   withIcons = false,
+  role = 'doctor',
 }) => {
   return (
     <Typography
-      className={typography.pc[type === 'header' ? 'h6' : 's3']}
+      className={
+        typography.pc[
+          type === 'header' ? 'h6' : role === Role.DOCTOR ? 's3' : 's2'
+        ]
+      }
       color={colorPalette.dark}
       component={type === 'header' ? 'h1' : 'h2'}
       sx={{
         ...(type === 'content' && {
           paddingBottom: '16px',
-          borderBottom: `1px solid ${colorPalette.line}`,
+          ...(role === Role.DOCTOR && {
+            borderBottom: `1px solid ${colorPalette.line}`,
+          }),
           marginBottom: '16px',
           display: 'flex',
           justifyContent: 'space-between',
@@ -133,7 +142,9 @@ export const PageTitle: FC<PageContentTitleProps> = ({
         }),
         minHeight: withIcons ? '57px' : 0,
       }}
-      {...(type === 'content' && { textTransform: 'uppercase' })}
+      {...(type === 'content' && {
+        textTransform: role === Role.DOCTOR ? 'uppercase' : 'none',
+      })}
     >
       {title}
       {otherContent}

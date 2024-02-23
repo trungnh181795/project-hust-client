@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { BarChart } from '@mui/x-charts/BarChart'
+import { LineChart } from '@mui/x-charts/LineChart'
 import { DeviceRecordData, PatientStatEnum } from '@/types'
 
 type PatientStatsChartProps = {
@@ -9,10 +9,16 @@ type PatientStatsChartProps = {
 const valueFormatter = (value: number, unit: string) => `${value}${unit}`
 
 const PatientStatsChart: FC<PatientStatsChartProps> = ({ records }) => {
+  const data = records.map((record) => ({
+    ...record,
+    updatedAt: new Date(record.updatedAt).toLocaleString('vn'),
+  }))
+
   return (
-    <BarChart
-      sx={{ width: '100%', height: '230px' }}
-      dataset={records}
+    <LineChart
+      height={250}
+      sx={{ width: '100%', height: '250px' }}
+      dataset={data}
       xAxis={[{ scaleType: 'band', dataKey: 'updatedAt' }]}
       series={[
         {

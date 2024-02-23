@@ -17,7 +17,7 @@ export const useDoctors: UseDoctors = (initialData?: DoctorData[]) => {
       revalidateOnReconnect: true,
       refreshInterval: 120000,
       fallbackData: initialData,
-      onSuccess: (data) => {
+      onSuccess: (data: any) => {
         dispatch(setDoctors(data?.data))
       },
     },

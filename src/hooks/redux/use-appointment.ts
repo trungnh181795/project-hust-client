@@ -19,14 +19,13 @@ export const usePatients: UseAppointments = (initialData) => {
       revalidateOnReconnect: true,
       refreshInterval: 10000,
       fallbackData: initialData,
-      onSuccess: (data) => {
-        dispatch(setPatients(data))
+      onSuccess: (data: any) => {
+        dispatch(setPatients(data?.data))
       },
     },
     undefined,
     { secured: true }
   )
-  console.log('data', { data, isLoading, error })
 
   return {
     patients: data,

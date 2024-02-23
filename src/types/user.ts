@@ -30,6 +30,7 @@ export type UserData = BaseData & {
   nationality: MaybeNull<string>
   identity: MaybeNull<string>
   address: MaybeNull<UserAddress>
+  patientId: MaybeNull<string>
 }
 
 export type CreateUserParams = {

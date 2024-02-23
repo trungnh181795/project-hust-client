@@ -114,7 +114,7 @@ export enum Role {
 export enum Gender {
   MALE = 'male',
   FEMALE = 'female',
-  PNS = 'prefer not to say'
+  PNS = 'prefer not to say',
 }
 
 export type Response = {
@@ -126,4 +126,24 @@ export type UseSWRReturn<T> = {
   isValidating: boolean
   error: any
   mutate: (optimisticData?: T | undefined) => void
+}
+
+export enum NotificationTypeEnum {
+  NORMAL = 'normal',
+  DANGER = 'danger',
+  WARNING = 'warning',
+}
+
+export type NotificationType = {
+  type: NotificationTypeEnum
+  title: string
+  message: string
+}
+
+export type PaginatedData<T> = {
+  data: T
+  totalDocument: number
+  totalPages: number
+  pageNum?: number
+  pageSize?: number
 }
