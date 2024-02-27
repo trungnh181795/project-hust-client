@@ -22,7 +22,7 @@ export const createDevice = createAsyncThunk(
         Response & DeviceData,
         CreateDeviceData
       >({
-        url: 'user',
+        url: 'device',
         method: 'POST',
         body: payload,
       })

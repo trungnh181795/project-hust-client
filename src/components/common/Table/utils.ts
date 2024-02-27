@@ -4,6 +4,10 @@ export function descendingComparator(a: TableRowType, b: TableRowType, orderBy: 
     const valAToComp = a.cells.find(cell => cell.identifier === orderBy)!
     const valBToComp = b.cells.find(cell => cell.identifier === orderBy)!
 
+    if (!valAToComp?.data || !valBToComp?.data) {
+        return 0
+    }
+
     if (valBToComp.data < valAToComp.data) {
         return -1;
     }

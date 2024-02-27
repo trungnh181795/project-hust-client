@@ -94,7 +94,6 @@ export const usePatientDetail: UsePatientDetail = (patientId, initialData) => {
       { secured: true }
     )
 
-  console.log('data2', data)
   return {
     patientDetail: data,
     isLoading,
@@ -115,7 +114,7 @@ export const usePatientStats: UsePatientStats = (patientId, initialData) => {
       revalidateOnMount: true,
       revalidateOnFocus: true,
       revalidateOnReconnect: true,
-      refreshInterval: 150000,
+      refreshInterval: 5000,
       fallbackData: initialData,
       onSuccess: (data: any) => {
         dispatch(setPatientStatsRecord(data?.data?.data))
